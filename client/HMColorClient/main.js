@@ -18,9 +18,11 @@ document.getElementById('add_button').addEventListener('click', function() {
 	puzzle.draw();
 
 	var a = new AJAX('http://li244-77.members.linode.com/puzzle.py/');
-	a.get('puzzle_gen', null, function(response) {
+	a.onSuccess = function(response) {
 		alert(response);
-	});
+	}
+	
+	a.send('GET', 'test', 'Hello Dan');
 
 });
 

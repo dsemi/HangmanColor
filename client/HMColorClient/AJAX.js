@@ -3,38 +3,41 @@ function AJAX(url) {
 	this.request = new XMLHttpRequest();
 }
 
-
 AJAX.prototype = {
-	url: null,
-	request: null,
-	
-	get: function(name, params, callback) {
-		var url = this.url.concat(name);
-		
+	url : null,
+	request : null,
+
+	onSuccess : function() {
+		console.log('Connection SUCCESS');
+	},
+
+	onFail : function() {
+		console.log('Connection FAIL')
+	},
+
+	send : function(method, name, params) {
+		var url, self;
+		url = this.url.concat(name);
+		self = this;
+
 		this.request.onreadystatechange = function() {
-			if(this.readyState === 4) {
+			if (this.readyState === 4) {
 				if (this.status === 200) {
-					callback(this.responseText);
+					self.onSuccess(this.reponse);
+				} else {
+					self.onFail(this.reponse);
 				}
 			}
 		};
-		
-		this.request.open('GET', url);
+
+		this.request.open(method, url);
 		this.request.send(params);
 	},
-	
-	post: function(name, params, callback) {
-		var url = this.url.concat(name);
-		
-		this.request.onreadystatechange = function() {
-			if(this.request.readyState === 4) {
-				if (this.request.status === 200) {
-					callback(this.request.responseText);
-				}
-			}
-		};
-		
-		this.request.open('POST', url);
-		this.request.send(params);
+
+	_formatParams : function(params) {
+		var result = '';
+		for (var param in params) {
+			result += param.concat('=', encodeURI(params[param]), '&');
+		}
 	}
 }
