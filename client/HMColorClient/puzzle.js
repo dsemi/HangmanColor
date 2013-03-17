@@ -36,23 +36,24 @@ Puzzle.prototype = {
 		image.src = url;
 
 		function loadImageData() {
-			var ratio, width, height;
-			ratio = image.width / image.height;
-			if (image.width > image.height) {
-			    width = 200;
-			    this.canvas.width = width;
-			    height = width / ratio;
-			    this.canvas.height = height;
-			} else {
-			    height = 200;
-			    this.canvas.height = height;
-			    width = height * ratio;
-			    this.canvas.width = width;
-			}
+		    var ratio, width, height;
+		    ratio = image.width / image.height;
+		    if (image.width > image.height) {
+			width = 200;
+			this.canvas.width = width;
+			height = width / ratio;
+			this.canvas.height = height;
+		    } else {
+			height = 200;
+			this.canvas.height = height;
+			width = height * ratio;
+			this.canvas.width = width;
+		    }
 
-			ctx.drawImage(image, 0, 0, width, height);
-			this.srcData = ctx.getImageData(0, 0, width, height)
-			this.dispData = ctx.createImageData(this.srcData);
+		    document.getElementById('guess_input').width = width
+		    ctx.drawImage(image, 0, 0, width, height);
+		    this.srcData = ctx.getImageData(0, 0, width, height)
+		    this.dispData = ctx.createImageData(this.srcData);
 		}
 
 	},
