@@ -1,8 +1,20 @@
+.puzzle {
+	border: solid black 1px;
+}
+
+#color_panel {
+	display: inline-block;
+	width: 50px;
+}
+
 .color_swatch {
+	display: inline-block;
 	width: 10px;
 	height: 10px;
+	margin: 1px;
 }
 
 .color_swatch:hover {
+	margin: 0;
 	border: solid black 1px;
 }
