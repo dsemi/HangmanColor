@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="app_container">
-			<h1>Color Hangman!</h1>
+			<h1>Color Hangman</h1>
 			<div id="puzzle_panel">
 				<canvas id="puzzle_canvas" class="puzzle"></canvas>
 				<div>
@@ -23,12 +23,15 @@
 				</div>
 			</div>
 
-			<div id="guess_panel">
+			<div id="guess_panel" class="tool_panel">
 				<form action="javascript:submitGuess()">
 					<input type="text" id="guess_input" name="guess" />
 					<input type="submit" />
 				</form>
-
+			</div>
+			
+			<div class="tool_panel">
+				Select Puzzle: 
 				<select name="im_file" id="puzzles_dropdown" onchange="javascript:changePuzzle(this);"></select>
 				
 				<button id="upload_button">

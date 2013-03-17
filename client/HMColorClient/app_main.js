@@ -40,6 +40,9 @@ colorPanel = new ColorPanel('color_panel', function(evt) {
 	puzzle.draw();
 });
 
+// Shows the score above the color panel.
+document.getElementById('score_value').innerHTML = colorPanel.score;
+
 function changePuzzle(selectedObj) {
     window.location.href = selectedObj.value;
     

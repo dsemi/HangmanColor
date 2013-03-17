@@ -1,5 +1,17 @@
-.app_container {
+body {
 	text-align: center;
+	width: 80%;
+	background-color: #45D92B;
+}
+
+.app_container {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	background-color: white;
+	margin: 25px 50px 20px 50px;
+	padding: 50px;
+	border-radius: 10px;
 }
 
 #puzzle_panel {
@@ -44,15 +56,16 @@
 	border: inset black 1px;
 }
 
-#guess_panel {
+.tool_panel {
 	margin-top: 10px;
-	width: 1000px;
+	width: 100%;
 	overflow: hidden;
 }
 
-#guess_panel > * {
+.tool_panel > * {
 	display: inline-block;
 	height: 100%;
+	margin: 0 10px 0 10px;
 }
 
 #confirmation_panel {
