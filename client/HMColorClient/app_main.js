@@ -38,7 +38,19 @@ function submitGuess() {
 	submit = new AJAX('puzzle.py/');
 
 	submit.onSuccess = function(response) {
-		alert(response);
+		var className, message;
+		if (JSON.parse(response)) {
+			className = 'correct';
+			message = 'You Won with ' + puzzle.score + ' points!';
+		} else {
+			className = 'incorrect';
+			message = 'Sorry, but you have lost.';
+		}
+		
+		var confirmation = document.getElementById('confirmation_panel');
+		confirmation.className = className;
+		confirmation.innerHTML = message;
+		
 		puzzle.showImage();
 	};
 

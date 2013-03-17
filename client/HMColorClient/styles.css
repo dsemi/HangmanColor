@@ -53,3 +53,11 @@
 .hidden {
 	visibility:  hidden;
 }
+
+.correct {
+	background-color: green;
+}
+
+.incorrect {
+	background-color: red;
+}
