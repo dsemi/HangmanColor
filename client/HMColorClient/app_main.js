@@ -54,7 +54,7 @@ function submitGuess() {
 		var className, message;
 		if (response == 'True') {
 			className = 'correct';
-			message = 'You Won with ' + puzzle.score + ' points!';
+			message = 'You Won with ' + colorPanel.score + ' points!';
 		} else {
 			className = 'incorrect';
 			message = 'Sorry, but you have lost.';
@@ -76,10 +76,7 @@ function submitGuess() {
 	document.getElementById('guess_input').value = '';
 }
 
-// Button listener to bring to puzzle list page.
-//document.getElementById('puzzles_button').addEventListener('click', function() {
-//	window.location.href = 'puzzles.html';
-//});
+// Popualates the puzzle list dropdown
 var getPuzzles = new AJAX('puzzle.py/');
 getPuzzles.onSuccess = function(response) {
 	loadList(response, "puzzles_dropdown")
