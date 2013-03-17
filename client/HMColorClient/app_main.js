@@ -110,4 +110,3 @@ function loadList(puzzleString, selectId) {
 document.getElementById('upload_button').addEventListener('click', function() {
 	window.open('upload.html', '_blank', 'width=400, height=200');
 });
-
