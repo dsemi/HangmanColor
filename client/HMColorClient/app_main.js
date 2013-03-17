@@ -64,9 +64,31 @@ function submitGuess() {
 }
 
 // Button listener to bring to puzzle list page.
-document.getElementById('puzzles_button').addEventListener('click', function() {
-	window.location.href = 'puzzles.html';
-});
+//document.getElementById('puzzles_button').addEventListener('click', function() {
+//	window.location.href = 'puzzles.html';
+//});
+var getPuzzles - new AJAX('puzzle.py/');
+getPuzzles.onSuccess = function (response) {
+    loadList(response, puzzles_dropdown)
+};
+
+getPuzzles.send('POST', 'list_puzzles');
+
+function loadList(puzzleString) {
+	var puzzleURLs, listItem, link;
+	puzzleURLs = puzzleString.split('\n');
+
+	for (var i = 0; i < puzzleURLs.length - 1; i++) {
+		listItem = document.createElement('li');
+		puzzleList.appendChild(listItem);
+
+		link = document.createElement('a');
+		link.setAttribute('href', puzzleURLs[i]);
+		link.innerHTML = 'Puzzle ' + (i + 1);
+		
+		listItem.appendChild(link);		
+	}
+}
 
 // Button listener to show upload page.
 document.getElementById('upload_button').addEventListener('click', function() {
