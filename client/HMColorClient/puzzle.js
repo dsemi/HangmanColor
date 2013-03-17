@@ -23,8 +23,6 @@ Puzzle.prototype = {
 		ctx = this.getContext();
 
 		image = new Image();
-		image.width = width;
-		image.height = height;
 
 		if (!scope)
 			scope = this;
@@ -38,7 +36,12 @@ Puzzle.prototype = {
 		image.src = url;
 
 		function loadImageData() {
-			ctx.drawImage(image, 0, 0, this.canvas.width, this.canvas.height);
+			var ratio, width, height;
+			
+			width = this.canvas.width;
+			height = this.canvas.height;
+			
+			ctx.drawImage(image, 0, 0, width, height);
 			this.srcData = ctx.getImageData(0, 0, width, height)
 			this.dispData = ctx.createImageData(this.srcData);
 		}
@@ -48,7 +51,7 @@ Puzzle.prototype = {
 	draw : function() {
 		var ctx;
 		ctx = this.getContext();
-		ctx.putImageData(this.dispData, 0, 0);
+		// ctx.putImageData(this.dispData, 0, 0);
 	},
 
 	addColor : function(color) {

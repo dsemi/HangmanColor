@@ -11,7 +11,7 @@ puzzleRequest.onSuccess = function(response) {
 }
 
 puzzleRequest.onFail = function() {
-	puzzle.setImage('images/blackbear.jpg', function() {
+	puzzle.setImage('images/duck.jpg', function() {
 		puzzle.draw();
 	});
 }
