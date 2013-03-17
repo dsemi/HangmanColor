@@ -16,16 +16,16 @@ puzzleRequest.onFail = function() {
 	});
 }
 
-puzzleRequest.send('GET', 'puzzle_gen');
+puzzleRequest.send('GET', 'puzzle_gen', getQueryParams(window.location));
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
 	var swatch, color, scorePanel;
 	scorePanel = document.getElementById('score_panel');
 	scorePanel.innerHTML = colorPanel.score;
-	
+
 	swatch = evt.target;
-	swatch.className += ' selected_swatch'; 
-	
+	swatch.className += ' selected_swatch';
+
 	color = colorPanel.colors[swatch.getAttribute('index')];
 	puzzle.addColor(color);
 	puzzle.draw();
@@ -52,7 +52,7 @@ guessSubmit = document.getElementById('guess_submit');
 
 guessSubmit.addEventListener('click', submitForm);
 guessInput.addEventListener('keypress', function(e) {
-	if(e.keyCode == 13) {
+	if (e.keyCode == 13) {
 		submitForm();
 		guessInput.value = '';
 	}
