@@ -1,4 +1,4 @@
-.puzzle {
+#puzzle {
 	border: solid black 1px;
 }
 
@@ -17,4 +17,22 @@
 .color_swatch:hover {
 	margin: 0;
 	border: solid black 1px;
+}
+
+#guess_panel {
+	height: 2em;
+	vertical-align: middle;
+}
+
+#guess_panel > * {
+	height: 100%;
+}
+
+#guess_input {
+	resize: none;
+	width: 50%
+}
+
+#guess_submit {
+	width: 20%;
 }
