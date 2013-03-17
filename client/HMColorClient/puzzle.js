@@ -39,11 +39,13 @@ Puzzle.prototype = {
 			var ratio, width, height;
 			ratio = image.width / image.height;
 			if (image.width > image.height) {
-				width = this.canvas.width;
-				height = width / ratio;
+			    width = 800;
+			    this.canvas.width = width;
+			    height = width / ratio;
 			} else {
-				height = this.canvas.height;
-				width = height * ratio;
+			    height = 300;
+			    this.canvas.height = height;
+			    width = height * ratio;
 			}
 
 			ctx.drawImage(image, 0, 0, width, height);
