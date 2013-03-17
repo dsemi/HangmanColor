@@ -67,9 +67,9 @@ function submitGuess() {
 //document.getElementById('puzzles_button').addEventListener('click', function() {
 //	window.location.href = 'puzzles.html';
 //});
-var getPuzzles-new AJAX('puzzle.py/');
+var getPuzzles = new AJAX('puzzle.py/');
 getPuzzles.onSuccess = function(response) {
-	loadList(response, puzzles_dropdown)
+	loadList(response, 'puzzles_dropdown')
 };
 
 getPuzzles.send('POST', 'list_puzzles');
