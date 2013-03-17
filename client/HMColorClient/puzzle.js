@@ -29,24 +29,23 @@ Puzzle.prototype = {
 		self = this;
 
 		image.onload = function() {
-		        loadImageData.call(self);
+			loadImageData.call(self);
 			callback.call(scope);
 		};
 
 		image.src = url;
 
 		function loadImageData() {
-		    var ratio, width, height;
-		    ratio = image.width/image.height; 
-		    if (image.width > image.height) {
-			width = this.canvas.width;
-			height = width/ratio;
-		    }
-		    else {
-			height = this.canvas.height;
-			width = height * ratio;
-		    }
-	
+			var ratio, width, height;
+			ratio = image.width / image.height;
+			if (image.width > image.height) {
+				width = this.canvas.width;
+				height = width / ratio;
+			} else {
+				height = this.canvas.height;
+				width = height * ratio;
+			}
+
 			ctx.drawImage(image, 0, 0, width, height);
 			this.srcData = ctx.getImageData(0, 0, width, height)
 			this.dispData = ctx.createImageData(this.srcData);
@@ -57,17 +56,17 @@ Puzzle.prototype = {
 	draw : function() {
 		var ctx;
 		ctx = this.getContext();
-		// ctx.putImageData(this.dispData, 0, 0);
+		ctx.putImageData(this.dispData, 0, 0);
 	},
 
 	addColor : function(color) {
 		var self = this;
-		
+
 		// FUNCTION
 		function nearestColor(colorValue) {
-			return Math.floor(colorValue * self.numColorBins / 256)*64+32;
+			return Math.floor(colorValue * self.numColorBins / 256) * 64 + 32;
 		}
-		
+
 		var s = this.srcData.data;
 
 		for (var i = 0; i < this.srcData.data.length - 4; i += 4) {

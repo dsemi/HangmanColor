@@ -11,7 +11,7 @@ puzzleRequest.onSuccess = function(response) {
 }
 
 puzzleRequest.onFail = function() {
-	puzzle.setImage('images/duck.jpg', function() {
+	puzzle.setImage('images/blackbear.jpg', function() {
 		puzzle.draw();
 	});
 }
@@ -27,11 +27,11 @@ colorPanel = new ColorPanel('color_panel', function(evt) {
 	puzzle.draw();
 });
 
-document.getElementById('guess_submit').addEventListener('click', function() {
+function submitForm() {
 	var guess, submit;
 	guess = document.getElementById('guess_input').value;
 	submit = new AJAX('puzzle.py/');
-	
+
 	submit.onSuccess = function(response) {
 		alert(response);
 	};
@@ -40,5 +40,13 @@ document.getElementById('guess_submit').addEventListener('click', function() {
 		guess : guess,
 		filepath : imgpath
 	});
+}
+
+
+document.getElementById('guess_submit').addEventListener('click', submitForm);
+document.getElementById('guess_input').addEventListener('keypress', function(e) {
+	if(e.keyCode == 13) {
+		submitForm();
+	}
 });
 
