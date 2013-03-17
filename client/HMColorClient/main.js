@@ -1,13 +1,15 @@
 var puzzle, url, img_url;
 
-url = 'http://li244-77.members.linode.com/';
+var a = new AJAX('puzzle.py/');
 
-img_url = 'images/blackbear.jpg';
+a.onSuccess = function(response) {
+	puzzle = new Puzzle('puzzle');
+	puzzle.setImage(response, function() {
+		puzzle.draw();
+	});
+}
 
-puzzle = new Puzzle('puzzle');
-puzzle.setImage(img_url, function() {
-	puzzle.draw();
-});
+a.send('GET', 'puzzle_gen');
 
 document.getElementById('add_button').addEventListener('click', function() {
 	puzzle.addColor({
@@ -16,13 +18,5 @@ document.getElementById('add_button').addEventListener('click', function() {
 		green : 0
 	});
 	puzzle.draw();
-
-	var a = new AJAX('http://li244-77.members.linode.com/puzzle.py/');
-	a.onSuccess = function(response) {
-		alert(response);
-	}
-	
-	a.send('GET', 'test', 'Hello Dan');
-
 });
 

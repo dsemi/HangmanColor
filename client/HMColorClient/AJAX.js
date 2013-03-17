@@ -23,21 +23,24 @@ AJAX.prototype = {
 		this.request.onreadystatechange = function() {
 			if (this.readyState === 4) {
 				if (this.status === 200) {
-					self.onSuccess(this.reponse);
+					self.onSuccess(this.responseText);
 				} else {
-					self.onFail(this.reponse);
+					self.onFail(this.responseText);
 				}
 			}
 		};
-
-		this.request.open(method, url);
-		this.request.send(params);
+		
+		this.request.open(method, url.concat('?', this._formatParams(params)));
+		this.request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		this.request.send();
 	},
 
 	_formatParams : function(params) {
 		var result = '';
 		for (var param in params) {
-			result += param.concat('=', encodeURI(params[param]), '&');
+			result = result.concat(param, '=', encodeURI(params[param]), '&');
 		}
+		
+		return result;
 	}
 }
