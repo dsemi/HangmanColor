@@ -19,10 +19,14 @@ puzzleRequest.onFail = function() {
 puzzleRequest.send('GET', 'puzzle_gen');
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
-	var index, color;
-	index = evt.target.getAttribute('index');
-	color = colorPanel.colors[index];
-
+	var swatch, color, scorePanel;
+	scorePanel = document.getElementById('score_panel');
+	scorePanel.innerHTML = colorPanel.score;
+	
+	swatch = evt.target;
+	swatch.className += ' selected_swatch'; 
+	
+	color = colorPanel.colors[swatch.getAttribute('index')];
 	puzzle.addColor(color);
 	puzzle.draw();
 });
@@ -42,11 +46,15 @@ function submitForm() {
 	});
 }
 
+var guessInput, guessSubmit;
+guessInput = document.getElementById('guess_input');
+guessSubmit = document.getElementById('guess_submit');
 
-document.getElementById('guess_submit').addEventListener('click', submitForm);
-document.getElementById('guess_input').addEventListener('keypress', function(e) {
+guessSubmit.addEventListener('click', submitForm);
+guessInput.addEventListener('keypress', function(e) {
 	if(e.keyCode == 13) {
 		submitForm();
+		guessInput.value = '';
 	}
 });
 

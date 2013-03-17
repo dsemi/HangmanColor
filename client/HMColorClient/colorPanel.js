@@ -8,10 +8,11 @@ function ColorPanel(panelId, clickListener) {
 ColorPanel.prototype = {
 	panel : null,
 	swatches : [],
-	colors: [],
-	clickListener: null,
-	
-	createColors: function(numValues) {
+	colors : [],
+	clickListener : null,
+	score : 0,
+
+	createColors : function(numValues) {
 		var colors = [];
 
 		for (var r = 0; r < numValues; r++) {
@@ -24,6 +25,8 @@ ColorPanel.prototype = {
 					});
 				}
 			}
+
+			this.score = Math.pow(numValues, 3);
 		}
 
 		var sortedColors = [];
@@ -33,7 +36,7 @@ ColorPanel.prototype = {
 			sortedColors.push(colors[i + colors.length / 4 * 2]);
 			sortedColors.push(colors[i + colors.length / 4 * 3]);
 		}
-		
+
 		return sortedColors;
 	},
 
@@ -43,7 +46,18 @@ ColorPanel.prototype = {
 			swatch.setAttribute('style', 'background-color: rgb(' + this.colors[i].red + ',' + this.colors[i].green + ',' + this.colors[i].blue + ');');
 			swatch.setAttribute('index', i);
 			swatch.className = 'color_swatch';
-			swatch.addEventListener('click', this.clickListener);
+
+			var self, listener;
+			self = this;
+			
+			// FUNCTION
+			listener = function(evt) {
+				self.score --;
+				swatch.removeEventListener('click', listener);
+				self.clickListener(evt);
+			};
+			
+			swatch.addEventListener('click', listener);
 
 			this.swatches.push(swatch);
 			this.panel.appendChild(swatch);

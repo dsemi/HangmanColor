@@ -3,6 +3,7 @@
 }
 
 #puzzle_panel > * {
+	display:inline-block;
 	height: 100%;	
 }
 
@@ -11,9 +12,12 @@
 	width: 80%;
 }
 
+#score_panel {
+}
+
 #color_panel {
-	display: inline-block;
-	width: 10%;
+	width: 100%;
+	height: 80%;
 }
 
 .color_swatch {
@@ -26,6 +30,11 @@
 .color_swatch:hover {
 	margin: 0;
 	border: solid black 1px;
+}
+
+.selected_swatch {
+	margin: 0;
+	border: inset black 1px;
 }
 
 #guess_panel {
