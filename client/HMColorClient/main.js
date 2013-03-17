@@ -1,6 +1,22 @@
-var puzzle, url;
+var puzzle, url, img_url;
 
-img_url = 'http://tangphillip.com/wordpress/wp-content/uploads/2012/09/octocat.png';
+url = 'http://li244-77.members.linode.com/';
+
+img_url = 'images/octocat.png';
 
 puzzle = new Puzzle('puzzle');
-puzzle.setImage(img_url, puzzle.drawImage);
+puzzle.setImage(img_url, function() {
+	puzzle.draw();
+});
+
+document.getElementById('add_button').addEventListener('click', function() {
+	puzzle.addColor({
+		red: 0,
+		blue: 0,
+		green: 0
+	});
+	puzzle.draw();
+});
+
+
+
