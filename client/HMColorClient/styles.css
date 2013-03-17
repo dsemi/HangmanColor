@@ -13,8 +13,9 @@
 	border: solid black 1px;
 }
 
-#score_panel {
+.score {
 	display: inline-block;
+	font-family: "Arial Black";
 }
 
 #color_panel {
@@ -48,4 +49,3 @@
 	display: inline-block;
 	height: 100%;
 }
-s

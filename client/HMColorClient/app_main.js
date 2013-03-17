@@ -20,9 +20,9 @@ getPuzzle.onFail = function() {
 getPuzzle.send('GET', 'puzzle_gen', getQueryParams(window.location));
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
-	var swatch, color, scorePanel;
-	scorePanel = document.getElementById('score_panel');
-	scorePanel.innerHTML = colorPanel.score;
+	var swatch, color, scoreValue;
+	scoreValue = document.getElementById('score_value');
+	scoreValue.innerHTML = colorPanel.score;
 
 	swatch = evt.target;
 	swatch.className += ' selected_swatch';
