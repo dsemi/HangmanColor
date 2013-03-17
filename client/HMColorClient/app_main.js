@@ -39,6 +39,7 @@ function submitGuess() {
 
 	submit.onSuccess = function(response) {
 		alert(response);
+		puzzle.showImage();
 	};
 
 	submit.send('GET', 'soln', {
@@ -55,7 +56,7 @@ document.getElementById('puzzles_button').addEventListener('click', function() {
 	window.location.href = 'puzzles.html';
 });
 
-//
+// Button listener to show upload page.
 document.getElementById('upload_button').addEventListener('click', function() {
 	window.open('upload.html', '_blank', 'width=400, height=200');
 });

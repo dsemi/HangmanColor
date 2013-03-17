@@ -49,3 +49,7 @@
 	display: inline-block;
 	height: 100%;
 }
+
+.hidden {
+	visibility:  hidden;
+}
