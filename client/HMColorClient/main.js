@@ -21,7 +21,7 @@ puzzleRequest.send('GET', 'puzzle_gen');
 colorPanel = new ColorPanel('color_panel', function(evt) {
 	var swatch, color, scorePanel;
 	scorePanel = document.getElementById('score_panel');
-	scorePanel.innerHTML = --colorPanel.score;
+	scorePanel.innerHTML = colorPanel.score;
 	
 	swatch = evt.target;
 	swatch.className += ' selected_swatch'; 
@@ -29,8 +29,6 @@ colorPanel = new ColorPanel('color_panel', function(evt) {
 	color = colorPanel.colors[swatch.getAttribute('index')];
 	puzzle.addColor(color);
 	puzzle.draw();
-	
-	swatch.removeListener('click', colorPanel.clickListener);
 });
 
 function submitForm() {
