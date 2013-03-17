@@ -47,17 +47,7 @@ ColorPanel.prototype = {
 			swatch.setAttribute('index', i);
 			swatch.className = 'color_swatch';
 
-			var self, listener;
-			self = this;
-			
-			// FUNCTION
-			listener = function(evt) {
-				self.score --;
-				swatch.removeEventListener('click', listener);
-				self.clickListener(evt);
-			};
-			
-			swatch.addEventListener('click', listener);
+			swatch.addEventListener('click', this.clickListener, false);
 
 			this.swatches.push(swatch);
 			this.panel.appendChild(swatch);

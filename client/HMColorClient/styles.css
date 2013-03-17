@@ -1,5 +1,6 @@
 #puzzle_panel {
 	height: 400px;
+	overflow: hidden;
 }
 
 #puzzle_panel > * {
