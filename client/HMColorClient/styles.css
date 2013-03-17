@@ -1,16 +1,26 @@
-#puzzle {
+#puzzle_panel {
+	height: 400px;
+}
+
+#puzzle_panel > * {
+	height: 100%;	
+}
+
+#puzzle_canvas {
 	border: solid black 1px;
+	width: 80%;
+	height: 100%;
 }
 
 #color_panel {
 	display: inline-block;
-	width: 50px;
+	width: 10%;
 }
 
 .color_swatch {
 	display: inline-block;
-	width: 10px;
-	height: 10px;
+	width: 20%;
+	height: 6%;
 	margin: 1px;
 }
 
@@ -21,7 +31,7 @@
 
 #guess_panel {
 	height: 2em;
-	vertical-align: middle;
+	margin-top: 10px;
 }
 
 #guess_panel > * {
