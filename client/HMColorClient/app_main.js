@@ -39,7 +39,7 @@ function submitGuess() {
 
 	submit.onSuccess = function(response) {
 		var className, message;
-		if (JSON.parse(response)) {
+		if (response == 'True') {
 			className = 'correct';
 			message = 'You Won with ' + puzzle.score + ' points!';
 		} else {
