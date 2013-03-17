@@ -1,3 +1,7 @@
+.app_container {
+	text-align: center;
+}
+
 #puzzle_panel {
 	height: 400px;
 	overflow: hidden;
@@ -43,6 +47,7 @@
 #guess_panel {
 	margin-top: 10px;
 	width: 1000px;
+	overflow: hidden;
 }
 
 #guess_panel > * {
