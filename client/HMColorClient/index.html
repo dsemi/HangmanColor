@@ -16,20 +16,24 @@
 			<div id="puzzle_panel">
 				<canvas id="puzzle_canvas" class="puzzle"></canvas>
 				<div>
-					<label for="score_panel">Score: </label>
+					<span>Score: </span>
 					<div id="score_panel"></div>
 					<div id="color_panel"></div>
 				</div>
 			</div>
 
 			<div id="guess_panel">
-				<textarea id="guess_input" name="guess"></textarea>
-				<button id="guess_submit">
-					SUBMIT
-				</button>
-
+				<form action="javascript:submitGuess()">
+					<input type="text" id="guess_input" name="guess" />
+					<input type="submit" />
+				</form>
+				
 				<button id="puzzles_button">
-					PUZZLES
+					Puzzles
+				</button>
+				
+				<button id="upload_button">
+					Upload
 				</button>
 			</div>
 

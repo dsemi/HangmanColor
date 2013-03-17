@@ -50,7 +50,6 @@ Puzzle.prototype = {
 				this.canvas.width = width;
 			}
 
-			document.getElementById('guess_input').setAttribute('style', 'width: '+ width + ';');
 			ctx.drawImage(image, 0, 0, width, height);
 			this.srcData = ctx.getImageData(0, 0, width, height)
 			this.dispData = ctx.createImageData(this.srcData);

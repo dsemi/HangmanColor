@@ -42,23 +42,22 @@ function submitGuess() {
 	};
 
 	submit.send('GET', 'soln', {
-		guess : guess,
+		guess : guess,	
 		filepath : imgpath
 	});
+	
+	// Clears the input text area
+	document.getElementById('guess_input').value = '';
 }
 
-var guessInput, guessSubmit;
-guessInput = document.getElementById('guess_input');
-guessSubmit = document.getElementById('guess_submit');
-
-guessSubmit.addEventListener('click', submitGuess);
-guessInput.addEventListener('keypress', function(e) {
-	if (e.keyCode == 13) {
-		submitGuess();
-		guessInput.value = '';
-	}
-});
-
+// Button listener to bring to puzzle list page.
 document.getElementById('puzzles_button').addEventListener('click', function() {
 	window.location.href = 'puzzles.html';
 });
+
+//
+document.getElementById('upload_button').addEventListener('click', function() {
+	window.open('upload.html', '_blank', 'width=400, height=200');
+});
+
+
