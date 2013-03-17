@@ -5,8 +5,8 @@
 }
 
 #puzzle_panel > * {
-	display:inline-block;
-	height: 100%;	
+	display: inline-block;
+	height: 100%;
 }
 
 #puzzle_canvas {
@@ -50,14 +50,21 @@
 	height: 100%;
 }
 
+#confirmation_panel {
+	text-align: center;
+	font-weight: bold;
+}
+
 .hidden {
-	visibility:  hidden;
+	visibility: hidden;
 }
 
 .correct {
-	background-color: green;
+	color: #044D00;
+	background-color: #0BE000;
 }
 
 .incorrect {
-	background-color: red;
+	color: #6B020D;
+	background-color: #F53145;
 }
