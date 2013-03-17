@@ -2,7 +2,7 @@ var puzzle, url, img_url;
 
 url = 'http://li244-77.members.linode.com/';
 
-img_url = 'images/octocat.png';
+img_url = 'images/blackbear.jpg';
 
 puzzle = new Puzzle('puzzle');
 puzzle.setImage(img_url, function() {

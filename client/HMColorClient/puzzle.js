@@ -6,6 +6,7 @@ Puzzle.prototype = {
 	canvas : null, // Canvas that everything is drawn to
 	srcData : null, // Original data of the source image
 	dispData : null, //Image data to be displayed on the canvas
+	numColorBins : 4,
 
 	getContext : function() {
 		return this.canvas.getContext('2d');
@@ -33,14 +34,15 @@ Puzzle.prototype = {
 			loadImageData.call(self);
 			callback.call(scope);
 		};
-		
+
 		image.src = url;
-		
+
 		function loadImageData() {
 			ctx.drawImage(image, 0, 0, this.canvas.width, this.canvas.height);
 			this.srcData = ctx.getImageData(0, 0, width, height)
 			this.dispData = ctx.createImageData(this.srcData);
 		}
+
 	},
 
 	draw : function() {
@@ -50,14 +52,19 @@ Puzzle.prototype = {
 	},
 
 	addColor : function(color) {
+		var self = this;
+		function nearestColor(colorValue) {
+			return Math.floor(colorValue * self.numColorBins / 256);
+		}
+		
 		var s = this.srcData.data;
 
 		for (var i = 0; i < this.srcData.data.length - 4; i += 4) {
-			if (s[i] === color.red && s[i + 1] === color.green && s[i + 2] === color.blue) {
+			if (nearestColor(s[i]) === color.red && nearestColor(s[i + 1]) === color.green && nearestColor(s[i + 2]) === color.blue) {
 				this.dispData.data[i] = this.srcData.data[i];
-				this.dispData.data[i+1] = this.srcData.data[i+1];
-				this.dispData.data[i+2] = this.srcData.data[i+2];
-				this.dispData.data[i+3] = this.srcData.data[i+3];
+				this.dispData.data[i + 1] = this.srcData.data[i + 1];
+				this.dispData.data[i + 2] = this.srcData.data[i + 2];
+				this.dispData.data[i + 3] = this.srcData.data[i + 3];
 			}
 		}
 	}
