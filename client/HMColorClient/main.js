@@ -1,22 +1,27 @@
-var puzzle, url, img_url;
+var puzzle, colorPanel;
 
 var a = new AJAX('puzzle.py/');
+puzzle = new Puzzle('puzzle');
 
 a.onSuccess = function(response) {
-	puzzle = new Puzzle('puzzle');
 	puzzle.setImage(response, function() {
+		puzzle.draw();
+	});
+}
+
+a.onFail = function() {
+	puzzle.setImage('images/blackbear.jpg', function() {
 		puzzle.draw();
 	});
 }
 
 a.send('GET', 'puzzle_gen');
 
-document.getElementById('add_button').addEventListener('click', function() {
-	puzzle.addColor({
-		red : 0,
-		blue : 0,
-		green : 0
-	});
+colorPanel = new ColorPanel('color_panel', function(evt) {
+	var index, color;
+	index = evt.target.getAttribute('index');
+	color = colorPanel.colors[index];
+	
+	puzzle.addColor(color);
 	puzzle.draw();
 });
-

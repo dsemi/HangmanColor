@@ -1,0 +1,8 @@
+.color_swatch {
+	width: 10px;
+	height: 10px;
+}
+
+.color_swatch:hover {
+	border: solid black 1px;
+}

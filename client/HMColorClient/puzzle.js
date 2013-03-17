@@ -53,8 +53,10 @@ Puzzle.prototype = {
 
 	addColor : function(color) {
 		var self = this;
+		
+		// FUNCTION
 		function nearestColor(colorValue) {
-			return Math.floor(colorValue * self.numColorBins / 256);
+			return Math.floor(colorValue * self.numColorBins / 256)*64+32;
 		}
 		
 		var s = this.srcData.data;
