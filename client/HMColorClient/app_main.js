@@ -17,6 +17,14 @@ getPuzzle.onFail = function() {
 	});
 }
 
+var getKey = new AJAX('puzzle.py/');
+getKey.onSuccess = function(response) {
+    window.location.href = 'http://li244-77.members.linode.com/?im_file='+response;
+}
+console.log(getQueryParams(window.location));
+if (getQueryParams(window.location) == null)
+    getKey.send('POST', 'key_gen')
+
 getPuzzle.send('GET', 'puzzle_gen', getQueryParams(window.location));
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
@@ -31,6 +39,11 @@ colorPanel = new ColorPanel('color_panel', function(evt) {
 	puzzle.addColor(color);
 	puzzle.draw();
 });
+
+function changePuzzle(selectedObj) {
+    window.location.href = selectedObj.value;
+    
+}
 
 function submitGuess() {
 	var guess, submit;
@@ -69,7 +82,7 @@ function submitGuess() {
 //});
 var getPuzzles = new AJAX('puzzle.py/');
 getPuzzles.onSuccess = function(response) {
-	loadList(response, 'puzzles_dropdown')
+	loadList(response, "puzzles_dropdown")
 };
 
 getPuzzles.send('POST', 'list_puzzles');
@@ -82,11 +95,14 @@ function loadList(puzzleString, selectId) {
 
 
 	for (var i = 0; i < puzzleURLs.length - 1; i++) {
-		option = document.createElement('option');
-		option.value = puzzleURLs[i];
-		option.innerHTML = 'Puzzle ' + (i + 1);
-		
-		select.appendChild(option);
+	    option = document.createElement('option');
+	    option.value = puzzleURLs[i];
+	    if (puzzleURLs[i] == window.location.href)
+		option.selected = true;
+
+	    option.innerHTML = 'Puzzle ' + (i + 1);
+	    
+	    select.appendChild(option);
 	}
 }
 
@@ -94,4 +110,3 @@ function loadList(puzzleString, selectId) {
 document.getElementById('upload_button').addEventListener('click', function() {
 	window.open('upload.html', '_blank', 'width=400, height=200');
 });
-
