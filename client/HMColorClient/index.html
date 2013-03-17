@@ -16,8 +16,9 @@
 			<div id="puzzle_panel">
 				<canvas id="puzzle_canvas" class="puzzle"></canvas>
 				<div>
-					<span>Score: </span>
-					<div id="score_panel"></div>
+					<span class="score">Score: </span>
+					<div id="score_value" class="score"></div>
+					
 					<div id="color_panel"></div>
 				</div>
 			</div>
@@ -27,15 +28,17 @@
 					<input type="text" id="guess_input" name="guess" />
 					<input type="submit" />
 				</form>
-				
+
 				<button id="puzzles_button">
 					Puzzles
 				</button> 
-	
+
 				<button id="upload_button">
 					Upload
 				</button>
 			</div>
+			
+			<div id="confirmation_panel" class="hidden"></div>
 
 			<script src="app_main.js"></script>
 		</div>

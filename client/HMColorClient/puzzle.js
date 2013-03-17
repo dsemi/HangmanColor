@@ -81,5 +81,9 @@ Puzzle.prototype = {
 				this.dispData.data[i + 3] = this.srcData.data[i + 3];
 			}
 		}
+	},
+
+	showImage : function() {
+		this.getContext().putImageData(this.srcData, 0, 0);
 	}
 }

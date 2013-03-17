@@ -20,9 +20,9 @@ getPuzzle.onFail = function() {
 getPuzzle.send('GET', 'puzzle_gen', getQueryParams(window.location));
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
-	var swatch, color, scorePanel;
-	scorePanel = document.getElementById('score_panel');
-	scorePanel.innerHTML = colorPanel.score;
+	var swatch, color, scoreValue;
+	scoreValue = document.getElementById('score_value');
+	scoreValue.innerHTML = colorPanel.score;
 
 	swatch = evt.target;
 	swatch.className += ' selected_swatch';
@@ -39,6 +39,7 @@ function submitGuess() {
 
 	submit.onSuccess = function(response) {
 		alert(response);
+		puzzle.showImage();
 	};
 
 	submit.send('GET', 'soln', {
@@ -55,7 +56,7 @@ document.getElementById('puzzles_button').addEventListener('click', function() {
 	window.location.href = 'puzzles.html';
 });
 
-//
+// Button listener to show upload page.
 document.getElementById('upload_button').addEventListener('click', function() {
 	window.open('upload.html', '_blank', 'width=400, height=200');
 });
