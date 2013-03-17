@@ -46,19 +46,19 @@ function submitGuess() {
 			className = 'incorrect';
 			message = 'Sorry, but you have lost.';
 		}
-		
+
 		var confirmation = document.getElementById('confirmation_panel');
 		confirmation.className = className;
 		confirmation.innerHTML = message;
-		
+
 		puzzle.showImage();
 	};
 
 	submit.send('GET', 'soln', {
-		guess : guess,	
+		guess : guess,
 		filepath : imgpath
 	});
-	
+
 	// Clears the input text area
 	document.getElementById('guess_input').value = '';
 }
@@ -67,26 +67,26 @@ function submitGuess() {
 //document.getElementById('puzzles_button').addEventListener('click', function() {
 //	window.location.href = 'puzzles.html';
 //});
-var getPuzzles - new AJAX('puzzle.py/');
-getPuzzles.onSuccess = function (response) {
-    loadList(response, puzzles_dropdown)
+var getPuzzles-new AJAX('puzzle.py/');
+getPuzzles.onSuccess = function(response) {
+	loadList(response, puzzles_dropdown)
 };
 
 getPuzzles.send('POST', 'list_puzzles');
 
-function loadList(puzzleString) {
-	var puzzleURLs, listItem, link;
+function loadList(puzzleString, selectId) {
+	var puzzleURLs, option, select;
+	
+	select = document.getElementById(selectId);
 	puzzleURLs = puzzleString.split('\n');
 
-	for (var i = 0; i < puzzleURLs.length - 1; i++) {
-		listItem = document.createElement('li');
-		puzzleList.appendChild(listItem);
 
-		link = document.createElement('a');
-		link.setAttribute('href', puzzleURLs[i]);
-		link.innerHTML = 'Puzzle ' + (i + 1);
+	for (var i = 0; i < puzzleURLs.length - 1; i++) {
+		option = document.createElement('option');
+		option.value = puzzleURLs[i];
+		option.innerHTML = 'Puzzle ' + (i + 1);
 		
-		listItem.appendChild(link);		
+		select.appendChild(option);
 	}
 }
 
@@ -94,5 +94,4 @@ function loadList(puzzleString) {
 document.getElementById('upload_button').addEventListener('click', function() {
 	window.open('upload.html', '_blank', 'width=400, height=200');
 });
-
 
