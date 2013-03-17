@@ -2,21 +2,22 @@ var puzzle, colorPanel, imgpath;
 
 puzzle = new Puzzle('puzzle_canvas');
 
-var puzzleRequest = new AJAX('puzzle.py/');
-puzzleRequest.onSuccess = function(response) {
+var getPuzzle = new AJAX('puzzle.py/');
+getPuzzle.onSuccess = function(response) {
 	imgpath = response;
 	puzzle.setImage(imgpath, function() {
 		puzzle.draw();
 	});
 }
 
-puzzleRequest.onFail = function() {
-	puzzle.setImage('images/duck.jpg', function() {
+getPuzzle.onFail = function() {
+	imgpath = 'images/duck.jpg';
+	puzzle.setImage(imgpath, function() {
 		puzzle.draw();
 	});
 }
 
-puzzleRequest.send('GET', 'puzzle_gen', getQueryParams(window.location));
+getPuzzle.send('GET', 'puzzle_gen', getQueryParams(window.location));
 
 colorPanel = new ColorPanel('color_panel', function(evt) {
 	var swatch, color, scorePanel;
@@ -31,7 +32,7 @@ colorPanel = new ColorPanel('color_panel', function(evt) {
 	puzzle.draw();
 });
 
-function submitForm() {
+function submitGuess() {
 	var guess, submit;
 	guess = document.getElementById('guess_input').value;
 	submit = new AJAX('puzzle.py/');
@@ -50,11 +51,14 @@ var guessInput, guessSubmit;
 guessInput = document.getElementById('guess_input');
 guessSubmit = document.getElementById('guess_submit');
 
-guessSubmit.addEventListener('click', submitForm);
+guessSubmit.addEventListener('click', submitGuess);
 guessInput.addEventListener('keypress', function(e) {
 	if (e.keyCode == 13) {
-		submitForm();
+		submitGuess();
 		guessInput.value = '';
 	}
 });
 
+document.getElementById('puzzles_button').addEventListener('click', function() {
+	window.location.href = 'puzzles.html';
+});
