@@ -26,11 +26,15 @@ def listimages(req):
     req.send_http_header()
     for key, val in images.items():
         req.write('%s: %s\n' % (key, val))
-    return apache.OK
+    return len(images.items())
 
 
 def list_puzzles():
-    string = ''.join(['http://li244-77.members.linode.com/?im_file=%s\n' % val for key, val in images.iteritems()])
+    puzzleList = []
+    for key, val in images.iteritems():
+	puzzleList.append('http://li244-77.members.linode.com/?im_file=%s\n' % val)
+    puzzleList = sorted(puzzleList)
+    string = ''.join(puzzleList)
     return string
 
 
